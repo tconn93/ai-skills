@@ -4,7 +4,6 @@ import os
 
 def run_command(cmd_list):
     result = subprocess.run(cmd_list, capture_output=True, text=True)
-    # print("result",result)
     if result.returncode != 0:
         raise Exception(f"Command failed: {result.stderr}")
     return json.loads(result.stdout)
@@ -12,7 +11,7 @@ def run_command(cmd_list):
 threads = []
 next_token = None
 
-base_cmd = ["gog", "gmail", "search", "is:unread label:inbox", "--json"]
+base_cmd = ["gog", "gmail", "search", "is:unread label:inbox -{from:bartlettholdings.com from:heartlandbuys.com}", "--json"]
 
 while True:
     cmd = base_cmd.copy()
